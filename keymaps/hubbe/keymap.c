@@ -215,7 +215,6 @@ void render_mod_status(uint8_t modifiers) {
 }
 
 void render_magic_status(void) {
-    oled_write_P(PSTR("Magic"), false);
     oled_write_P(PSTR(" "), false);
     oled_write_P(PSTR("NKRO"), keymap_config.nkro);
 }
@@ -235,8 +234,6 @@ void render_status_main(void) {
     oled_write_P(PSTR("-----"), false);
     // Render Magic/NKRO status
     render_magic_status();
-    // Add a empty line
-    oled_write_P(PSTR("-----"), false);
 }
 
 bool oled_task_user(void) {
