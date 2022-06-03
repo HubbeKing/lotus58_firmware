@@ -138,11 +138,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* SYSTEM
  * ,------------------------------------------.   ___              .-----------------------------------------.
- * |QK_BOOT|EE_CLR|QK_RBT|      |      |      |  | O |       ___   |NumLck|  7   |  8   |  9   |  -   |      |
+ * |QK_BOOT|EE_CLR|QK_RBT|      |      |PrnScr|  | O |       ___   |NumLck|  7   |  8   |  9   |  -   |ScrLK |
  * |-------+------+------+------+------+------|  | L |      /   \  |------+------+------+------+------+------|
  * |NK_TOGG|      |      |      |      |      |  | E |     (MUTE ) |      |  4   |  5   |  6   |  +   |      |
  * |-------+------+------+------+------+------|  |_D_|      \___/  |------+------+------+------+------+------|
- * |       |      |      |      |      |      |-------.    .-------|      |  1   |  2   |  3   |  *   |      |
+ * |CapsLK |      |      |      |      |      |-------.    .-------|      |  1   |  2   |  3   |  *   |      |
  * |-------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |       |      |      |      |      |      |-------|    |-------|      |  0   |  0   |  .   |  /   |  =   |
  * `------------------------------------------/       /    \       \-----------------------------------------'
@@ -156,9 +156,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // NK_TOGG = Toggle USB N-key rollover (for better BIOS compatibility)
 
   [_SYSTEM] = LAYOUT(
-  QK_BOOT, EE_CLR,  QK_RBT,  XXXXXXX, XXXXXXX, XXXXXXX,                   KC_NUM,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, XXXXXXX,
+  QK_BOOT, EE_CLR,  QK_RBT,  XXXXXXX, XXXXXXX, KC_PSCR,                   KC_NUM,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_SCRL,
   NK_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PAST, XXXXXXX,
+  KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PAST, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P0,   KC_P0,   KC_PDOT, KC_PSLS, KC_PEQL,
                     KC_NO,   _______, _______, _______, _______, KC_PENT, _______, KC_BSPC, _______, KC_MUTE
   )
