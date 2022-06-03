@@ -53,6 +53,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Allows dual displays to show modifiers etc
 #define SERIAL_USE_MULTI_TRANSACTION
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE
 #define SPLIT_MODS_ENABLE
 #define SPLIT_TRANSPORT_MIRROR
 
