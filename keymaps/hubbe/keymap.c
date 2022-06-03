@@ -148,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* SYSTEM
  * ,------------------------------------------.   ___              .-----------------------------------------.
- * |QK_BOOT|EE_CLR|      |      |      |      |  | O |       ___   |NumLck|  7   |  8   |  9   |  -   |      |
+ * |QK_BOOT|EE_CLR|QK_RBT|      |      |      |  | O |       ___   |NumLck|  7   |  8   |  9   |  -   |      |
  * |-------+------+------+------+------+------|  | L |      /   \  |------+------+------+------+------+------|
- * |       |      |      |      |      |      |  | E |     (MUTE ) |      |  4   |  5   |  6   |  +   |      |
+ * |NK_TOGG|      |      |      |      |      |  | E |     (MUTE ) |      |  4   |  5   |  6   |  +   |      |
  * |-------+------+------+------+------+------|  |_D_|      \___/  |------+------+------+------+------+------|
  * |       |      |      |      |      |      |-------.    .-------|      |  1   |  2   |  3   |  *   |      |
  * |-------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -162,9 +162,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // QK_BOOT = Put the keyboard into bootloader mode for flashing
 // EE_CLR  = Reinitializes the keyboard’s EEPROM (persistent memory)
+// QK_RBT  = Reboot keyboard
+// NK_TOGG = Toggle USB N-key rollover (for better BIOS compatibility)
+
   [_SYSTEM] = LAYOUT(
-  QK_BOOT, EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_NUM,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, XXXXXXX,
+  QK_BOOT, EE_CLR,  QK_RBT,  XXXXXXX, XXXXXXX, XXXXXXX,                   KC_NUM,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, XXXXXXX,
+  NK_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PAST, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P0,   KC_P0,   KC_PDOT, KC_PSLS, KC_PEQL,
                     KC_NO,   _______, _______, _______, _______, KC_PENT, _______, KC_BSPC, _______, KC_MUTE
@@ -221,6 +224,12 @@ void render_mod_status(uint8_t modifiers) {
     oled_write_P(PSTR("G"), (modifiers & MOD_MASK_GUI));
 }
 
+void render_magic_status(void) {
+    oled_write_P(PSTR("Magic"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(PSTR("NKRO"), keymap_config.nkro);
+}
+
 void render_status_main(void) {
     // Show keyboard layout
     render_default_layer_state();
@@ -234,11 +243,15 @@ void render_status_main(void) {
     render_mod_status(get_mods());
     // Add a empty line
     oled_write_P(PSTR("-----"), false);
+    // Render Magic/NKRO status
+    render_magic_status();
+    // Add a empty line
+    oled_write_P(PSTR("-----"), false);
 }
 
 bool oled_task_user(void) {
     render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
-return false;
+    return false;
 }
 
 #endif // OLED_ENABLE
@@ -255,7 +268,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_VOLU);
         }
     }
-    else {  // on RAISE or LOWER layer
+    else {  // on RAISE, LOWER, or SYSTEM layer
         // Navigation
         if (clockwise) {
             tap_code(KC_MS_WH_UP);

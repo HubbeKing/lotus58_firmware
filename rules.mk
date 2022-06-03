@@ -16,7 +16,7 @@ AUTO_SHIFT_ENABLE = no		# Enable auto-shift						https://github.com/qmk/qmk_firm
 CONSOLE_ENABLE = no         # Console for debug
 COMMAND_ENABLE = no         # Commands for debug and configuration
 
-NKRO_ENABLE = yes           # USB Nkey Rollover
+NKRO_ENABLE = yes			# USB Nkey Rollover
 
 BACKLIGHT_ENABLE = no		# Enable keyboard backlighting			https://github.com/qmk/qmk_firmware/blob/master/docs/feature_backlight.md
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow			https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rgblight.md
@@ -24,6 +24,7 @@ ENCODER_ENABLE = yes		# Enable encoder support				https://github.com/qmk/qmk_fir
 OLED_ENABLE = yes			# Enable OLED support					https://github.com/qmk/qmk_firmware/blob/master/docs/feature_oled_driver.md
 SPLIT_KEYBOARD = yes
 
-LTO_ENABLE = yes			# optimize size by removing deprecated stuff
+LTO_ENABLE = yes			# enable Link Time Optimization to reduce firmware size
+
 # work around bug with avr-gcc 12
 EXTRAFLAGS += --param=min-pagesize=0
