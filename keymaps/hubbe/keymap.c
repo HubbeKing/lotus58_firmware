@@ -47,32 +47,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Tap Dance declarations
 enum {
-    TD_LBRC_BACK,
-    TD_RBRC_FWD,
     TD_RGUI_RALT
 };
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for [, twice for Browser Back
-    [TD_LBRC_BACK] = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_WWW_BACK),
-    // Tap once for ], twice for Browser Forward
-    [TD_RBRC_FWD] = ACTION_TAP_DANCE_DOUBLE(KC_RBRC, KC_WWW_FORWARD),
     // Tap once for RGUI, twice for RAlt
     [TD_RGUI_RALT] = ACTION_TAP_DANCE_DOUBLE(KC_RGUI, KC_RALT)
 };
 
 // Tap Dance shortcuts
-#define T_LBRC TD(TD_LBRC_BACK)     // Tap once for [, twice for Browser Back
-#define T_RBRC TD(TD_RBRC_FWD)      // Tap once for ], twice for Browser Forward
 #define T_RGUI TD(TD_RGUI_RALT)     // Tap once for RGUI, twice for RAlt
 
 // Tap-hold shortcuts
 #define MT_EQ MT(MOD_RSFT, KC_EQL)  // hold for RShift, tap for =
 
 // Layer shortcuts
-#define LT_RSE LT(_RAISE, KC_ENT)   // tap for enter, hold for _RAISE
-#define LT_LOW LT(_LOWER, KC_SPC)   // tap for space, hold for _LOWER
 #define RAISE MO(_RAISE)            // hold for _RAISE
 #define LOWER MO(_LOWER)            // hold for _LOWER
 

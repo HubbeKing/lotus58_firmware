@@ -93,15 +93,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* If defined, GRAVE_ESC will always act as ESC when CTRL is held.
  * This is useful for the Windows task manager shortcut (ctrl+shift+esc).
  */
-#define GRAVE_ESC_CTRL_OVERRIDE
-
-/*
- * Feature disable options
- *  These options are also useful to firmware size reduction.
- */
-
-/* disable action features */
-#define NO_ACTION_ONESHOT
+//#define GRAVE_ESC_CTRL_OVERRIDE
 
 /* Bootmagic Lite key configuration */
 #define BOOTMAGIC_LITE_ROW 0
