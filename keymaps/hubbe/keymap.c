@@ -69,8 +69,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define TD_RGUI TD(TD_RGUI_ALGR)    // Tap once for RGUI, twice for AltGr
 
 // Layer shortcuts
-#define RAISE MO(_RAISE)            // hold for _RAISE
-#define LOWER MO(_LOWER)            // hold for _LOWER
+#define RAISE TT(_RAISE)            // hold for _RAISE, tap to toggle _RAISE
+#define LOWER TT(_LOWER)            // hold for _LOWER, tap to toggle _LOWER
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab  |      |      |      |      |      |  | E |     (MUTE ) | PgUp |      |  Up  |      | Home |      |
  * |------+------+------+------+------+------|  |_D_|      \___/  |------+------+------+------+------+------|
  * |LCtrl |      |      | Prev | Play | Next |-------.    .-------| PgDn | Left | Down |Right | End  |      |
- * |------+------+------+------+------+------|       |    |BackSP |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|   [   |    |   ]   |------+------+------+------+------+------|
  * |LShift|      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE | Del  | RGUI |
@@ -149,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |NK_TOGG|      |      |      |      |      |  | E |     (MUTE ) |      |  4   |  5   |  6   |  -   |      |
  * |-------+------+------+------+------+------|  |_D_|      \___/  |------+------+------+------+------+------|
  * |       |      |      |      |      |      |-------.    .-------|      |  1   |  2   |  3   |  *   |      |
- * |-------+------+------+------+------+------|       |    |BackSP |------+------+------+------+------+------|
+ * |-------+------+------+------+------+------|   [   |    |   ]   |------+------+------+------+------+------|
  * |CapsLK |      |      |      |      |      |-------|    |-------|      |  0   |  0   |  .   |  /   |  =   |
  * `-----------------------------------------/       /     \       \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | / Space /       \ Enter \  |RAISE |BackSP| RGUI |
