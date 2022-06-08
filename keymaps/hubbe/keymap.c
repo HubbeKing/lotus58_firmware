@@ -10,12 +10,13 @@ enum layers {
 
 // Custom keycodes
 enum custom_keycodes {
-    QWERTY = SAFE_RANGE,
-    KC_Å,
+    KC_Å = SAFE_RANGE,
     KC_Ä,
     KC_Ö,
     KC_EUR,
-    KC_GBP
+    KC_GBP,
+    KC_PREV_WORD,
+    KC_NEXT_WORD
 };
 
 // Tap dance declarations
@@ -37,27 +38,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 SEND_STRING(SS_ALGR("w"));
             }
-            break;
+            return false;
         case KC_Ä:
             if (record->event.pressed) {
                 SEND_STRING(SS_ALGR("a"));
             }
-            break;
+            return false;
         case KC_Ö:
             if (record->event.pressed) {
                 SEND_STRING(SS_ALGR("o"));
             }
-            break;
+            return false;
         case KC_EUR:
             if (record->event.pressed) {
                 SEND_STRING(SS_ALGR("5"));
             }
-            break;
+            return false;
         case KC_GBP:
             if (record->event.pressed) {
                 SEND_STRING(SS_ALGR("4"));
             }
-            break;
+            return false;
+        // navigation macros
+        case KC_PREV_WORD:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LCTL(SS_TAP(X_LEFT)));
+            }
+            return false;
+        case KC_NEXT_WORD:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LCTL(SS_TAP(X_RIGHT)));
+            }
+            return false;
     }
     return true;
 }
@@ -71,6 +83,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Layer shortcuts
 #define RAISE TT(_RAISE)            // hold for _RAISE, tap to toggle _RAISE
 #define LOWER TT(_LOWER)            // hold for _LOWER, tap to toggle _LOWER
+
+// Macro shortcuts
+#define PRV_WRD KC_PREV_WORD
+#define NXT_WRD KC_NEXT_WORD
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -121,13 +137,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* RAISE
  * ,-----------------------------------------.   ___              .-----------------------------------------.
- * | F11  |  F1  |  F2  |  F3  |  F4  |  F5  |  | O |       ___   |  F6  |  F7  |  F8  |  F9  |  F10 |  F12 |
+ * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  | O |       ___   |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
  * |------+------+------+------+------+------|  | L |      /   \  |------+------+------+------+------+------|
- * | Tab  |      |      |      |      |      |  | E |     (MUTE ) | PgUp |      |  Up  |      | Home |      |
+ * | Tab  |      |      |      |      |      |  | E |     (MUTE ) | PgUp |PrvWrd|  Up  |NxtWrd|      |  F12 |
  * |------+------+------+------+------+------|  |_D_|      \___/  |------+------+------+------+------+------|
- * |LCtrl |      |      | Prev | Play | Next |-------.    .-------| PgDn | Left | Down |Right | End  |      |
+ * |LCtrl |      |      | Prev | Play | Next |-------.    .-------| PgDn | Left | Down |Right |      |      |
  * |------+------+------+------+------+------|   [   |    |   ]   |------+------+------+------+------+------|
- * |LShift|      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
+ * |LShift|      |      |      |      |      |-------|    |-------|      | Home |      | End  |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE | Del  | RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -135,10 +151,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_RAISE] = LAYOUT(
-  KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F12,
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_PGUP, XXXXXXX, KC_UP,   XXXXXXX, KC_HOME, XXXXXXX,
-  _______, XXXXXXX, XXXXXXX, KC_MRWD, KC_MPLY, KC_MFFD,                   KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  XXXXXXX,
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_PGUP, PRV_WRD, KC_UP,   NXT_WRD, XXXXXXX, KC_F12,
+  _______, XXXXXXX, XXXXXXX, KC_MRWD, KC_MPLY, KC_MFFD,                   KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, KC_HOME, XXXXXXX, KC_END,  XXXXXXX, XXXXXXX,
                     KC_NO,   _______, _______, _______, _______, _______, _______, KC_DEL,  _______, KC_MUTE
 ),
 
