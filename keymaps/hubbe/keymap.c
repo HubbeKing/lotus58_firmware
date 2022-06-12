@@ -152,11 +152,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.   ___              .-----------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |  | O |       ___   |   ^  |   &  |   *  |   (  |   )  |   `  |
  * |------+------+------+------+------+------|  | L |      /   \  |------+------+------+------+------+------|
- * | Tab  |      |   Å  |   €  |      |      |  | E |     (MUTE ) |      |      |      |      |      |   |  |
+ * | Tab  |      |   Å  |   €  |      |      |  | E |     (MUTE ) |      |      |      |      |      |   _  |
  * |------+------+------+------+------+------|  |_D_|      \___/  |------+------+------+------+------+------|
  * |LCtrl |   Ä  |      |   Ö  |      |   £  |-------.    .-------|      |      |      |      |   :  |   "  |
  * |------+------+------+------+------+------|   {   |    |   }   |------+------+------+------+------+------|
- * |LShift|      |      |      |      |      |-------|    |-------|      |      |   <  |   >  |   ?  |   +  |
+ * |LShift|      |      |      |      |      |-------|    |-------|      |      |   <  |   >  |   ?  |   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE | Del  | RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -164,9 +164,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_GRV,
-  _______, XXXXXXX, KC_Å,    KC_EUR,  XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PIPE,
+  _______, XXXXXXX, KC_Å,    KC_EUR,  XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_UNDS,
   _______, KC_Ä,    XXXXXXX, KC_Ö,    XXXXXXX, KC_GBP,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COLN, KC_DQUO,
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCBR, KC_RCBR, XXXXXXX, XXXXXXX, KC_LT,   KC_GT,   KC_QUES, KC_PLUS,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCBR, KC_RCBR, XXXXXXX, XXXXXXX, KC_LT,   KC_GT,   KC_QUES, KC_PIPE,
                     KC_NO,   _______, _______, _______, _______, _______, _______, KC_DEL,  _______, KC_MUTE
 ),
 
