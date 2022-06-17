@@ -48,8 +48,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL
 #define SOFT_SERIAL_PIN D2
 
-// Define which side is the master (should be connected to USB)
-//#define MASTER_RIGHT
+// Detects USB and assigns master (Not recommended on Elite C/Pro Micro mix)
+#define SPLIT_USB_DETECT
+#define SPLIT_USB_TIMEOUT 2000
+#define SPLIT_USB_TIMEOUT_POLL 10
 
 // Allows dual displays to show modifiers etc
 #define SERIAL_USE_MULTI_TRANSACTION
@@ -58,45 +60,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_MODS_ENABLE
 #define SPLIT_TRANSPORT_MIRROR
 
-// Detects USB and assigns master (Not recommended on Elite C/Pro Micro mix)
-#define SPLIT_USB_DETECT
-#define SPLIT_USB_TIMEOUT 2000
-#define SPLIT_USB_TIMEOUT_POLL 10
+// Set maximum length of tap to 180ms
+// Longer than 180ms is a hold
+#define TAPPING_TERM 180
 
-// Used for tapping in keymap
-#define TAPPING_TERM 175
-#define TAPPING_TOGGLE 2
-#define TAP_CODE_DELAY 10
+// Debounce - wait for 10ms after state change before sending keypresses, to prevent unintended inputs due to noise
+#define DEBOUNCE 10
 
-// Basic RGB configuration
-//#define RGB_DI_PIN D3
-//#define RGBLIGHT_SPLIT
+// timeout oneshot mods after 1.5 seconds
+#define ONESHOT_TIMEOUT 1500
 
-// Underglow LEDs
-//#define RGBLED_SPLIT { 6, 6 }
-//#define RGBLED_NUM 12
-
-// Full backlight + underglow
-//#define RGBLED_SPLIT { 35, 35 }
-//#define RGBLED_NUM 70
-
-// Disable depreciated
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
-
-//#define NO_AUTO_SHIFT_SPECIAL
-//#define NO_AUTO_SHIFT_NUMERIC
-
-/* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 5
-
-/* If defined, GRAVE_ESC will always act as ESC when CTRL is held.
- * This is useful for the Windows task manager shortcut (ctrl+shift+esc).
- */
-//#define GRAVE_ESC_CTRL_OVERRIDE
-
-/* Bootmagic Lite key configuration */
-#define BOOTMAGIC_LITE_ROW 0
-#define BOOTMAGIC_LITE_COLUMN 0
-#define BOOTMAGIC_LITE_ROW_RIGHT 5
-#define BOOTMAGIC_LITE_COLUMN_RIGHT 5
+// set OLED brightness (0-255)
+#define OLED_BRIGHTNESS 255
