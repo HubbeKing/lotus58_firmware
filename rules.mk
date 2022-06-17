@@ -7,10 +7,10 @@ BOOTLOADER = atmel-dfu
 
 # Build Options
 #   change yes to no to disable
-BOOTMAGIC_ENABLE = yes      # Virtual DIP switch configuration		https://github.com/qmk/qmk_firmware/blob/master/docs/feature_bootmagic.md
+BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration		https://github.com/qmk/qmk_firmware/blob/master/docs/feature_bootmagic.md
 MOUSEKEY_ENABLE = yes		# Mouse keys							https://github.com/qmk/qmk_firmware/blob/master/docs/feature_mouse_keys.md
 EXTRAKEY_ENABLE = yes       # Audio control and System control
-TAP_DANCE_ENABLE = yes		# Enable Tap Dance						https://github.com/qmk/qmk_firmware/blob/master/docs/feature_tap_dance.md
+TAP_DANCE_ENABLE = no		# Enable Tap Dance						https://github.com/qmk/qmk_firmware/blob/master/docs/feature_tap_dance.md
 AUTO_SHIFT_ENABLE = no		# Enable auto-shift						https://github.com/qmk/qmk_firmware/blob/master/docs/feature_auto_shift.md
 
 CONSOLE_ENABLE = no         # Console for debug
