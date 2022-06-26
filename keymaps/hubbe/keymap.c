@@ -11,12 +11,7 @@ enum layers {
 
 // Custom keycode declarations
 enum custom_keycodes {
-    KC_Å = SAFE_RANGE,  // ensure macro codes get unique numbers internally
-    KC_Ä,
-    KC_Ö,
-    KC_EUR,
-    KC_GBP,
-    KC_PREV_WORD,
+    KC_PREV_WORD = SAFE_RANGE,  // ensure macro codes get unique numbers internally
     KC_NEXT_WORD,
     QWERTY,
     COLEMAK
@@ -25,32 +20,6 @@ enum custom_keycodes {
 // Custom keycode definitions
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // EurKey macros for å,ä,ö,€,£
-        case KC_Å:
-            if (record->event.pressed) {
-                SEND_STRING(SS_ALGR("w"));              // Right Alt + w -> å
-            }
-            return false;
-        case KC_Ä:
-            if (record->event.pressed) {
-                SEND_STRING(SS_ALGR("a"));              // Right Alt + a -> ä
-            }
-            return false;
-        case KC_Ö:
-            if (record->event.pressed) {
-                SEND_STRING(SS_ALGR("o"));              // Right Alt + o -> ö
-            }
-            return false;
-        case KC_EUR:
-            if (record->event.pressed) {
-                SEND_STRING(SS_ALGR("5"));              // Right Alt + 5 -> €
-            }
-            return false;
-        case KC_GBP:
-            if (record->event.pressed) {
-                SEND_STRING(SS_ALGR("4"));              // Right Alt + 4 -> £
-            }
-            return false;
         // navigation macros
         case KC_PREV_WORD:
             if (record->event.pressed) {
@@ -143,9 +112,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.   ___              .-----------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |  | O |       ___   |   ^  |   &  |   *  |   (  |   )  |   `  |
  * |------+------+------+------+------+------|  | L |      /   \  |------+------+------+------+------+------|
- * | Tab  |      |   Å  |   €  |      |      |  | E |     (MUTE ) |      |      |      |      |   `  |   _  |
+ * | Tab  |  F1  |  F2  |  F3  |  F4  |  F5  |  | E |     (MUTE ) |      |      |      |      |   `  |   _  |
  * |------+------+------+------+------+------|  |_D_|      \___/  |------+------+------+------+------+------|
- * |LCtrl |   Ä  |      |   Ö  |      |   £  |-------.    .-------|      |      |      |      |   :  |   "  |
+ * |LCtrl |  F6  |  F7  |  F8  |  F9  |  F10 |-------.    .-------|      |      |      |      |   :  |   "  |
  * |------+------+------+------+------+------|   {   |    |   }   |------+------+------+------+------+------|
  * |LShift|      |      |      |      |      |-------|    |-------|      |      |   <  |   >  |   ?  |   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -155,8 +124,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS,
-    _______, XXXXXXX, KC_Å,    KC_EUR,  XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_GRV,  KC_PLUS,
-    _______, KC_Ä,    XXXXXXX, KC_Ö,    XXXXXXX, KC_GBP,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COLN, KC_DQUO,
+    _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_GRV,  KC_PLUS,
+    _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COLN, KC_DQUO,
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCBR, KC_RCBR, XXXXXXX, XXXXXXX, KC_LT,   KC_GT,   KC_QUES, KC_PIPE,
                       KC_NO,   _______, _______, _______, _______, _______, _______, KC_DEL,  _______, KC_MUTE
 ),
